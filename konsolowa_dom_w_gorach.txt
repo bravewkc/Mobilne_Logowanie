@@ -1,0 +1,57 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] numbers = GenerateArray(); // Generuje losową tablicę liczb
+        int target = GetTargetNumber(); // Pobiera liczbę do wyszukania
+
+        int result = FindFirstOccurrence(numbers, target); // Szuka pierwszego wystąpienia liczby
+
+        DisplayResults(numbers, result); // Wyświetla wyniki
+    }
+
+    static int[] GenerateArray()
+    {
+        Random random = new Random(); // Inicjalizuje generator liczb losowych
+        int[] array = new int[50]; // Tworzy tablicę o długości 50
+        for (int i = 0; i < 50; i++)
+        {
+            array[i] = random.Next(1, 101); // Wypełnia tablicę losowymi liczbami
+        }
+        return array; // Zwraca tablicę
+    }
+
+    static int GetTargetNumber()
+    {
+        Console.Write("Podaj liczbę do wyszukania: "); // Prosi użytkownika o liczbę
+        return Convert.ToInt32(Console.ReadLine()); // Zwraca wprowadzone przez użytkownika dane jako liczbę
+    }
+
+    static int FindFirstOccurrence(int[] array, int target)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            if (array[i] == target) // Sprawdza, czy liczba na danym indeksie jest równa liczbie docelowej
+            {
+                return i; // Zwraca indeks pierwszego wystąpienia liczby
+            }
+        }
+        return -1; // Jeśli liczba nie zostanie znaleziona
+    }
+
+    static void DisplayResults(int[] array, int result)
+    {
+        Console.WriteLine("Zawartość tablicy: [" + string.Join(", ", array) + "]"); // Wyświetla zawartość tablicy
+        
+        if (result != -1) // Sprawdza, czy liczba została znaleziona
+        {
+            Console.WriteLine($"Liczba {result} zostala znaleziona na indeksie {result}."); // Informuje o znalezieniu liczby
+        }
+        else
+        {
+            Console.WriteLine("Liczby nie zostały znalezione w tablicy."); // Informuje, że liczba nie została znaleziona
+        }
+    }
+}
